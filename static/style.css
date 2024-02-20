@@ -1,3 +1,13 @@
 body {
   background-color: #f8f8f8;
 }
+
+.cupcake {
+  display: flex;
+  align-items: center;
+}
+
+.cupcake-image {
+  margin: 5px;
+  width: 100px;
+}
