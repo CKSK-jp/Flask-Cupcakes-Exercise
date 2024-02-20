@@ -11,3 +11,14 @@ body {
   margin: 5px;
   width: 100px;
 }
+
+#add-cupcake-form {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid black;
+  background-color: #ccc;
+}
+
+h1, h2, h3 {
+  margin: 5px;
+}

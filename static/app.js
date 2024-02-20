@@ -1,4 +1,3 @@
-// TODO: JSON API Requests
 const BASE_URL = "http://127.0.0.1:5000/api";
 
 async function showCupcakes() {
@@ -19,6 +18,7 @@ function createCupcakeHTML(cupcake) {
         <p>Size: ${cupcake.size} </p>
         <p>Rating: ${cupcake.rating} </p>
         </li>
+        <button class="edit" data-cupcake-id="${cupcake.id}">Edit</button>
         <button class="delete" data-cupcake-id="${cupcake.id}">Remove</button>
       </div>
       <img src="${cupcake.image}" alt="${cupcake.flavor} Cupcake img" class="cupcake-image">
@@ -50,8 +50,30 @@ $('#add-cupcake-form').on('submit', async function (event) {
 })
 
 $('#cupcakes-list').on('click', '.delete', async function (event) {
-  const cupcakeId = $(event.target).data('cupcake-id');
+  event.preventDefault();
+  const cupcake = $(event.target).closest('.cupcake');
+  console.log(cupcake)
+  const cupcakeId = $(event.target).data("cupcake-id");
   await axios.delete(`${BASE_URL}/cupcakes/${cupcakeId}`);
+  $(cupcake).remove();
 })
+
+// TODO edit cupcake form
+// $('#cupcakes-list').on('click', '.edit', async function (event) {
+//   event.preventDefault();
+//   const cupcake = $(event.target).closest('.cupcake');
+//   const cupcakeId = $(event.target).data("cupcake-id");
+
+//   const response = await axios.get(`${BASE_URL}/cupcakes/${cupcakeId}`);
+
+//   const cupcakeData = response.data.cupcake;
+
+//   $('#form-flavor').val(cupcakeData.flavor);
+//   $('#form-size').val(cupcakeData.size);
+//   $('#form-rating').val(cupcakeData.rating);
+//   $('#form-image').val(cupcakeData.image);
+
+// })
+
 
 $(showCupcakes);
